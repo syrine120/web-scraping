@@ -8,6 +8,7 @@ import requests
 from bs4 import BeautifulSoup
 import time
 from urllib.parse import urljoin
+import json
 BASE="https://books.toscrape.com/catalogue/"
 headers={
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
@@ -72,5 +73,7 @@ def main():
             all_books.append(book)
         time.sleep(2)  # Pause de 2 secondes 
     print(f"Total books scraped: {len(all_books)}")
+    with open('books.json', 'w', encoding='utf-8') as f:
+        json.dump(all_books, f, ensure_ascii=False, indent=4)
 if __name__ == "__main__":
     main()
